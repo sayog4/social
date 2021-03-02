@@ -1,0 +1,36 @@
+
+# dependencies
+client/node_modules
+client/.pnp
+client.pnp.js
+
+# testing
+client/coverage
+
+# next.js
+client/.next/
+client/out/
+
+# production
+client/build
+
+# misc
+client/.DS_Store
+client/*.pem
+
+# debug
+client/package-lock.json
+client/npm-debug.log*
+client/yarn-debug.log*
+client/yarn-error.log*
+
+# local env files
+client/.env
+
+# vercel
+client/.vercel
+
+server/build
+server/node_modules
+server/package-lock.json
+server/.env
