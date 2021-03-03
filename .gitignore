@@ -31,7 +31,7 @@ client/.env.local
 client/.vercel
 
 server/build
-server/firebase.json
+server/src/firebase.json
 server/node_modules
 server/package-lock.json
 server/.env
