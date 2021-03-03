@@ -1,42 +1,29 @@
 import dotenv from 'dotenv'
 dotenv.config()
-import { ApolloServer, gql } from 'apollo-server'
+import { ApolloServer } from 'apollo-server'
+import path from 'path'
+import { mergeTypeDefs, mergeResolvers } from '@graphql-tools/merge'
+import { loadFilesSync } from '@graphql-tools/load-files'
+import models from './models'
 
 import connectDB from './db/db'
 
 // Database connection
 connectDB()
 
-const books = [
-  {
-    title: 'The Awakening',
-    author: 'Kate Chopin',
-  },
-  {
-    title: 'City of Glass',
-    author: 'Paul Auster',
-  },
-]
+// merging typeDefs
+const typeDefs = mergeTypeDefs(loadFilesSync(path.join(__dirname, './schemas')))
+// merging resolvers
+const resolvers = mergeResolvers(
+  loadFilesSync(path.join(__dirname, './resolvers'))
+)
 
-const typeDefs = gql`
-  type Book {
-    title: String
-    author: String
-  }
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ req }) => ({ req, models }),
+})
 
-  type Query {
-    books: [Book]
-  }
-`
-
-const resolvers = {
-  Query: {
-    books: () => books,
-  },
-}
-
-const server = new ApolloServer({ typeDefs, resolvers })
-
-server.listen().then(({ url }) => {
-  console.log(`SERVER IS RUNNING ON --- ${url}`)
+server.listen(process.env.PORT || 8000).then(({ url }) => {
+  console.log(`SERVER IS RUNNING ON --- ${url}${server.graphqlPath}`)
 })
