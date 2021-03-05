@@ -53,6 +53,9 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     background: radial-gradient(circle, rgba(67,92,222,1) 0%, rgba(235,97,209,1) 0%);
     color: var(---grey);
+    @media (min-width: 500px){
+      font-size: 1.6rem;
+    }
   }
   a,button{
     font-family: var(---ff);
@@ -65,15 +68,31 @@ const GlobalStyles = createGlobalStyle`
   }
   h1,h2,h3{ 
     color: var(--primary-dark);
+    margin: var(--spacer) 0;
   }
   button{
     display: inline-block;
     cursor: pointer;
     border: 0;
   }
+  .load-more{
+    padding: .7rem 2rem;
+    margin: var(--spacer) 0;
+    background: var(--primary-light);
+    font-weight: var(--fw-bold);
+    
+  }
+  .a-b-c{
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+  }
 `
 const ContainerStyles = styled.div`
-  max-width: 80rem;
+  max-width: 90rem;
   margin: 0 auto;
   padding: 0 var(--spacer);
   background: white;

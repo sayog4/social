@@ -14,28 +14,26 @@ export default function SignIn() {
     setActive(name)
   }
   return (
-    <>
-      <FormContainerStyles>
-        <TabStyles>
-          <li
-            onClick={() => handleClick('login')}
-            className={`text-center ${active === 'login' ? 'active' : ''}`}
-            aria-label="Go to login form"
-          >
-            Login
-          </li>
-          <li
-            className={`text-center ${active === 'register' ? 'active' : ''}`}
-            onClick={() => handleClick('register')}
-            aria-label="Go to register form"
-          >
-            Register
-          </li>
-        </TabStyles>
+    <FormContainerStyles>
+      <TabStyles>
+        <li
+          onClick={() => handleClick('login')}
+          className={`text-center ${active === 'login' ? 'active' : ''}`}
+          aria-label="Go to login form"
+        >
+          Login
+        </li>
+        <li
+          className={`text-center ${active === 'register' ? 'active' : ''}`}
+          onClick={() => handleClick('register')}
+          aria-label="Go to register form"
+        >
+          Register
+        </li>
+      </TabStyles>
 
-        {active === 'login' && <Login />}
-        {active === 'register' && <Register />}
-      </FormContainerStyles>
-    </>
+      {active === 'login' && <Login />}
+      {active === 'register' && <Register />}
+    </FormContainerStyles>
   )
 }

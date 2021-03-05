@@ -3,10 +3,12 @@ import styled from 'styled-components'
 export const FormContainerStyles = styled.div`
   font-size: 1.4rem;
   color: var(--grey);
+  padding: 2rem 0;
 `
 export const TabStyles = styled.ul`
   display: flex;
-
+  margin: 0;
+  margin-bottom: 2rem;
   & > * {
     width: 100%;
   }

@@ -8,8 +8,12 @@ const postSchema = schema(
       required: true,
     },
     image: {
-      type: String,
-      default: 'https://via.placeholder.com/800.png?text=POST',
+      url: {
+        type: String,
+      },
+      public_id: {
+        type: String,
+      },
     },
     postedBy: {
       type: schema.Types.ObjectId,

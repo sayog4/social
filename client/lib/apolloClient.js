@@ -27,7 +27,36 @@ function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined', // set to true for SSR
     link: authLink.concat(uploadLink),
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      typePolicies: {
+        Query: {
+          fields: {
+            allPosts: {
+              merge(existing, incoming, { readField }) {
+                const posts = existing ? { ...existing.posts } : {}
+                incoming.posts.forEach((post) => {
+                  posts[readField('_id', post)] = post
+                })
+                return {
+                  cursor: incoming.cursor,
+                  posts,
+                  hasNextPage: incoming.hasNextPage,
+                }
+              },
+              read(existing) {
+                if (existing) {
+                  return {
+                    cursor: existing.cursor,
+                    posts: Object.values(existing.posts),
+                    hasNextPage: existing.hasNextPage,
+                  }
+                }
+              },
+            },
+          },
+        },
+      },
+    }),
   })
 }
 

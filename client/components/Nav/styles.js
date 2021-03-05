@@ -16,13 +16,18 @@ export const HeaderStyles = styled.header`
 `
 
 export const NavStyles = styled.nav`
+  padding: 0 var(--spacer);
   display: flex;
+  --margin: 1rem;
   ul {
     display: flex;
     margin-left: auto;
   }
   ul > * + * {
-    margin-left: var(--spacer);
+    margin-left: var(--margin);
+    @media (min-width: 500px) {
+      --margin: 3rem;
+    }
   }
   span {
     cursor: pointer;

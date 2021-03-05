@@ -3,8 +3,10 @@ import { authCheck } from '../utils/fbAuthCheck'
 
 const userResolver = {
   Query: {
-    user() {
-      return 'hello'
+    async me(parent, args, { models, req }, info) {
+      const currentUser = await authCheck(req)
+
+      return models.User.findOne({ email: currentUser.email })
     },
   },
   Mutation: {
@@ -19,6 +21,16 @@ const userResolver = {
         name: shortId.generate(),
       }).save()
       return true
+    },
+    async updateUser(parent, { data }, { req, models }, info) {
+      const currentUser = await authCheck(req)
+
+      const updatedUser = await models.User.findOneAndUpdate(
+        { email: currentUser.email },
+        { ...data },
+        { new: true }
+      )
+      return updatedUser
     },
   },
 }

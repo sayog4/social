@@ -18,10 +18,15 @@
     "@graphql-tools/load-files": "^6.2.7",
     "@graphql-tools/merge": "^6.2.10",
     "apollo-server": "^2.21.0",
+    "cloudinary": "^1.25.0",
+    "dayjs": "^1.10.4",
     "firebase-admin": "^9.5.0",
     "graphql": "^15.5.0",
     "mongoose": "^5.11.18",
     "shortid": "^2.2.16"
+  },
+  "resolutions": {
+    "fs-capacitor": "^6.2.0"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",

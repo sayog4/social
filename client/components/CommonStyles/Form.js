@@ -14,6 +14,8 @@ const FormStyles = styled.form`
   border-radius: 5px;
   padding: calc(1.5 * var(--spacer));
   color: var(--primary-dark);
+  max-width: 55rem;
+  margin: 0 auto;
 
   label {
     display: block;
@@ -21,6 +23,7 @@ const FormStyles = styled.form`
   }
   input,
   textarea {
+    min-width: 27rem;
     width: 100%;
     padding: 0.6rem;
     font-size: 1.4rem;
@@ -33,10 +36,30 @@ const FormStyles = styled.form`
     &:focus {
       transition: all 0.2s;
       outline: none;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: rgba(0, 0, 0, 0.6);
       color: white;
       border-color: var(--primary-dark);
     }
+  }
+  input[type='file'] {
+    display: none;
+    & + label {
+      background: var(--primary-light);
+      border: none;
+      border-radius: 5px;
+      color: var(--black);
+      cursor: pointer;
+      display: inline-block;
+      font-size: inherit;
+      font-weight: var(--fw-bold);
+      margin-bottom: 1rem;
+      outline: none;
+      padding: 0.7rem 2rem;
+    }
+  }
+  textarea {
+    resize: vertical;
+    overflow-x: hidden;
   }
   button {
     width: 100%;
@@ -48,8 +71,13 @@ const FormStyles = styled.form`
   fieldset {
     border: 0;
     padding: 0;
+    --space: var(--spacer);
     & > * + * {
-      margin-top: var(--spacer);
+      margin-top: var(--space);
+
+      @media (min-width: 500px) {
+        --space: 2.5rem;
+      }
     }
     &[disabled] {
       opacity: 0.7;

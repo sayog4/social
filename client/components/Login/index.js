@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { auth, googleAuthProvider } from '../../lib/firebase'
 import { AuthContext } from '../../lib/useAuth'
 import { useMutation } from '@apollo/client'
+import Link from 'next/link'
 
 import useForm from '../../lib/useForm'
 import FormStyles from '../CommonStyles/Form'
@@ -91,6 +92,7 @@ export default function Login() {
           name="password"
           placeholder="Enter Password"
         />
+        <Link href="authentication/forgot-password">Forgot Password</Link>
         <button onClick={handleLoginWithGoogle} type="button">
           LogIn with Google
         </button>

@@ -18,8 +18,12 @@ const userSchema = schema(
       unique: true,
     },
     image: {
-      type: String,
-      default: 'https://via.placeholder.com/200.png?text=USER',
+      url: {
+        type: String,
+      },
+      public_id: {
+        type: String,
+      },
     },
     bio: {
       type: String,
